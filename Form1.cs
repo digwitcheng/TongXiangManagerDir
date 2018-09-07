@@ -99,25 +99,25 @@ namespace AGV_V1._0
 
         private void ReInitWithiRealAgv()
         {
-            
+
             VehicleManager.Instance.ReInitWithiRealAgv();
         }
 
         private void StartRemoteServer()
         {
-             remotableObject = new RouteRemoteObject();
+            remotableObject = new RouteRemoteObject();
             TcpChannel channel = new TcpChannel(ConstDefine.REMOTE_PORT);
             ChannelServices.RegisterChannel(channel);
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(RouteRemoteObject), ConstDefine.REMOTE_NAME, WellKnownObjectMode.Singleton);
 
 
         }
-       
+
         private void ConnectDataBase()
         {
-           //SqlManager.Instance.Connect2DataBase();
+            //SqlManager.Instance.Connect2DataBase();
         }
-      
+
         void InitServer()
         {
 
@@ -134,8 +134,8 @@ namespace AGV_V1._0
 
             am = AgvServerManager.Instance;
             am.ShowMessage += OnShowMessageWithPicBox;
-           //am.ReLoad += ReInitialSystem;
-           //am.DataMessage +=OnAgvDone ;
+            //am.ReLoad += ReInitialSystem;
+            //am.DataMessage +=OnAgvDone ;
             am.StartServer(ConstDefine.AGV_PORT_ADRESS);
         }
         void DisposeServer()
@@ -220,7 +220,7 @@ namespace AGV_V1._0
             SearchRouteQueue.Instance.Clear();
 
             InitialAgv();
-            Thread.Sleep(100);            
+            Thread.Sleep(100);
             timer1.Start();
 
 
@@ -290,15 +290,15 @@ namespace AGV_V1._0
         {
             Elc.InitialElc();
 
-           // this.WindowState = FormWindowState.Maximized;
-            ConstDefine.g_NodeLength = (int)(FORM_WIDTH * PANEL_RADIO) / (ConstDefine.g_WidthNum+1)/2;
+            // this.WindowState = FormWindowState.Maximized;
+            ConstDefine.g_NodeLength = (int)(FORM_WIDTH * PANEL_RADIO) / (ConstDefine.g_WidthNum + 1) / 2;
             MAX_NODE_LENGTH = ConstDefine.g_NodeLength * 2;
             MIN_NODE_LENGTH = ConstDefine.g_NodeLength / 2;
 
             ////设置滚动条滚动的区域
             //this.AutoScrollMinSize = new Size(ConstDefine.WIDTH + ConstDefine.BEGIN_X, ConstDefine.HEIGHT);
 
-          
+
 
 
             SetMapView();
@@ -423,7 +423,7 @@ namespace AGV_V1._0
                         Rectangle rect = new Rectangle(Elc.mapnode[i, j].X - 1, Elc.mapnode[i, j].Y - 1, ConstDefine.g_NodeLength + 2, ConstDefine.g_NodeLength + 2);
                         DrawUtil.FillRectangle(gg, Color.DarkOliveGreen, rect);
                         PointF pf = new PointF(Elc.mapnode[i, j].X, Elc.mapnode[i, j].Y);
-                        DrawUtil.DrawString(gg,Elc.mapnode[i, j].NodeCanUsed, ConstDefine.g_NodeLength / 2, Color.Black, pf);
+                        DrawUtil.DrawString(gg, Elc.mapnode[i, j].NodeCanUsed, ConstDefine.g_NodeLength / 2, Color.Black, pf);
 
                     }
                     //if (Elc.mapnode[i, j].TraCongesIntensity == 100)
@@ -512,7 +512,7 @@ namespace AGV_V1._0
         /// 重绘函数
         /// </summary>
         /// <param name="g"></param>
-         void DrawVehicle(Graphics g,Vehicle v)
+        void DrawVehicle(Graphics g, Vehicle v)
         {
 
 #if moni
@@ -528,19 +528,19 @@ namespace AGV_V1._0
             {
                 for (int i = 0; i < v.TPtr; i++)
                 {
-                    Rectangle rectPath = new Rectangle(v.Route[i].Y * ConstDefine.g_NodeLength, (int)v.Route[i].X* ConstDefine.g_NodeLength, ConstDefine.g_NodeLength - 2, ConstDefine.g_NodeLength - 2);
+                    Rectangle rectPath = new Rectangle(v.Route[i].Y * ConstDefine.g_NodeLength, (int)v.Route[i].X * ConstDefine.g_NodeLength, ConstDefine.g_NodeLength - 2, ConstDefine.g_NodeLength - 2);
                     DrawUtil.FillRectangle(g, v.pathColor, rectPath);
                 }
             }
 
-                Rectangle rect = new Rectangle((int)(v.GetRealY()) * ConstDefine.g_NodeLength, (int)v.GetRealX() * ConstDefine.g_NodeLength, ConstDefine.g_NodeLength - 2, ConstDefine.g_NodeLength - 2);
-                DrawUtil.FillRectangle(g, v.showColor, rect);
+            Rectangle rect = new Rectangle((int)(v.GetRealY()) * ConstDefine.g_NodeLength, (int)v.GetRealX() * ConstDefine.g_NodeLength, ConstDefine.g_NodeLength - 2, ConstDefine.g_NodeLength - 2);
+            DrawUtil.FillRectangle(g, v.showColor, rect);
 
-                PointF p = new PointF((int)((v.GetRealY()) * ConstDefine.g_NodeLength), (int)((v.GetRealX()) * ConstDefine.g_NodeLength));
-                DrawUtil.DrawString(g, v.Id, ConstDefine.g_NodeLength / 2, Color.Black, p);
+            PointF p = new PointF((int)((v.GetRealY()) * ConstDefine.g_NodeLength), (int)((v.GetRealX()) * ConstDefine.g_NodeLength));
+            DrawUtil.DrawString(g, v.Id, ConstDefine.g_NodeLength / 2, Color.Black, p);
 #endif
 
-            
+
         }
 
         void drawArrow(int y, int x)
@@ -563,11 +563,11 @@ namespace AGV_V1._0
             {
                 dir |= Up;
             }
-            if (Elc.mapnode[y, x].IsAbleCross==false)
+            if (Elc.mapnode[y, x].IsAbleCross == false)
             {
                 dir = 0;
             }
-                Image img = IMAGE_DICT[dir];
+            Image img = IMAGE_DICT[dir];
             if (img != null)
             {
                 g.DrawImage(img, new Rectangle(Elc.mapnode[y, x].X - 1, Elc.mapnode[y, x].Y - 1, ConstDefine.g_NodeLength - 2, ConstDefine.g_NodeLength - 2));
@@ -731,7 +731,7 @@ namespace AGV_V1._0
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             DisposeServer();
-            Logs.Info("总任务数："+finishCountLabel.Text+" "+distanceTotal.Text);
+            Logs.Info("总任务数：" + finishCountLabel.Text + " " + distanceTotal.Text);
             EndThread();
             //Environment.Exit(0); 
 
@@ -796,7 +796,7 @@ namespace AGV_V1._0
         private void button1_Click(object sender, EventArgs e)
         {
             byte vnum = 6;
-            ChargePacket cp = new ChargePacket(vnum, (byte)vnum, new CellPoint(4000,0));
+            ChargePacket cp = new ChargePacket(vnum, (byte)vnum, new CellPoint(4000, 0));
             Console.WriteLine("send charge");
             AgvServerManager.Instance.SendTo(cp, vnum);
         }
@@ -825,6 +825,46 @@ namespace AGV_V1._0
             RemotingServices.Disconnect(remotableObject);
         }
 
-       
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int charge = Int32.Parse(chargeTxt.Text.Trim());
+                if (charge > 100 || charge < 0)
+                {
+                    MessageBox.Show("值在0~100之间");
+                    return;
+                }
+                VehicleManager.Instance.ChargeMin = charge;
+                MessageBox.Show("更改成功!");
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("请输入数值，值在0~100之间");
+                return;
+            }
+
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int charge = Int32.Parse(finishChargeTxt.Text.Trim());
+                if (charge > 100 || charge < 0)
+                {
+                    MessageBox.Show("值在0~100之间");
+                    return;
+                }
+                VehicleManager.Instance.ChargeMax = charge;
+                MessageBox.Show("更改成功!");
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("请输入数值，值在0~100之间");
+                return;
+            }
+        }
     }
 }

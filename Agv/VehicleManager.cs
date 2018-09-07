@@ -30,8 +30,6 @@ namespace AGV_V1._0
         private double moveCount = 0;//统计移动的格数，当前地图一格1.5米
         public const int REINIT_COUNT = 20;
         private const int WAIT_TIME = 1000;//  等待超时后还没有翻盘完成的消息就重发翻盘报文
-        private const int CHARGE_MIN = 100;
-        private const int CHARGE_MAX = 25;
         private const int CHARGE_END_X = 4;
         private const int CHARGE_END_Y = 1;
         private const int CHARGING_X = 4;
@@ -39,6 +37,30 @@ namespace AGV_V1._0
         private const int SCANNER_X = 10;
         private const int SCANNER_Y = 3;
 
+        private  int chargeMin = 100; //小于这个值需要充电
+        private  int chargeMax = 25;  //大于这个值充电完成
+
+        public int ChargeMin
+        {
+            set {
+                if (value > 100 || value < 0)
+                {
+                    value = 50;
+                }
+                chargeMin = value;
+            }
+        }
+        public int ChargeMax
+        {
+            set
+            {
+                if (value > 100 || value < 0)
+                {
+                    value = 50;
+                }
+                chargeMax = value;
+            }
+        }
 
         private static Random rand = new Random(1);//5,/4/4 //((int)DateTime.Now.Ticks);//随机数，随机产生坐标
 
@@ -121,7 +143,7 @@ namespace AGV_V1._0
                 }
                 if (vehicles[vnum].Arrive == true && vehicles[vnum].CurState == State.Charging)
                 {
-                    if (vehicles[vnum].agvInfo.Electricity > CHARGE_MAX)
+                    if (vehicles[vnum].agvInfo.Electricity > chargeMax)
                     {
                         if (vehicles[vnum].agvInfo.OrderExec == OrderExecState.Free
                         && vehicles[vnum].EqualWithRealLocation(CHARGING_X, CHARGING_Y)
@@ -164,7 +186,7 @@ namespace AGV_V1._0
                         &&( vehicles[vnum].LastSendPacket is TrayPacket || vehicles[vnum].LastSendPacket is FinishChargePacket)
                         )
                     {
-                        if (vehicles[vnum].agvInfo.Electricity < CHARGE_MIN)
+                        if (vehicles[vnum].agvInfo.Electricity < chargeMin)
                         {
                             GoToCharge(vnum);
                         }

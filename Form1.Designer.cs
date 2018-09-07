@@ -55,6 +55,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.picShow = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.chargeTxt = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.finishChargeTxt = new System.Windows.Forms.TextBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -73,6 +79,12 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gray;
+            this.panel2.Controls.Add(this.button8);
+            this.panel2.Controls.Add(this.finishChargeTxt);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.chargeTxt);
+            this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.button6);
@@ -89,11 +101,12 @@
             this.panel2.Location = new System.Drawing.Point(7, 7);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(193, 687);
+            this.panel2.Size = new System.Drawing.Size(227, 687);
             this.panel2.TabIndex = 14;
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(0, 489);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -104,6 +117,7 @@
             // 
             // button7
             // 
+            this.button7.Enabled = false;
             this.button7.Location = new System.Drawing.Point(82, 486);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
@@ -243,8 +257,8 @@
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.48148F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.25926F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
@@ -265,10 +279,10 @@
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel1.Controls.Add(this.pic);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(211, 7);
+            this.panel1.Location = new System.Drawing.Point(245, 7);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(930, 687);
+            this.panel1.Size = new System.Drawing.Size(896, 687);
             this.panel1.TabIndex = 35;
             // 
             // splitContainer1
@@ -378,6 +392,60 @@
             this.picShow.TabIndex = 0;
             this.picShow.TabStop = false;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(150, 522);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(52, 34);
+            this.button4.TabIndex = 39;
+            this.button4.Text = "更改";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // chargeTxt
+            // 
+            this.chargeTxt.Location = new System.Drawing.Point(82, 529);
+            this.chargeTxt.Name = "chargeTxt";
+            this.chargeTxt.Size = new System.Drawing.Size(52, 25);
+            this.chargeTxt.TabIndex = 40;
+            this.chargeTxt.Text = "100";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(-3, 532);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 15);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "充电阈值：";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(-3, 557);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(112, 15);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "退出充电阈值：";
+            // 
+            // finishChargeTxt
+            // 
+            this.finishChargeTxt.Location = new System.Drawing.Point(101, 557);
+            this.finishChargeTxt.Name = "finishChargeTxt";
+            this.finishChargeTxt.Size = new System.Drawing.Size(55, 25);
+            this.finishChargeTxt.TabIndex = 43;
+            this.finishChargeTxt.Text = "25";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(162, 557);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(52, 34);
+            this.button8.TabIndex = 44;
+            this.button8.Text = "更改";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -436,6 +504,12 @@
         private System.Windows.Forms.Label distanceTotal;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox finishChargeTxt;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox chargeTxt;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button8;
     }
 }
 
