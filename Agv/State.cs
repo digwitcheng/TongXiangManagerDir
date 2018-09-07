@@ -2,6 +2,6 @@
 {
 
     //小车状态
-    enum State { Free, NeedCharge, Breakdown, cannotToDestination, carried, unloading };
+    enum State { Free, NeedCharge, Breakdown, cannotToDestination, carried, unloading,Charging,Charged};
     
 }

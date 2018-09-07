@@ -94,22 +94,22 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(36, 522);
+            this.button1.Location = new System.Drawing.Point(0, 489);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 38;
-            this.button1.Text = "旋转90度";
+            this.button1.Text = "充电测试";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(36, 486);
+            this.button7.Location = new System.Drawing.Point(82, 486);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(100, 29);
             this.button7.TabIndex = 37;
-            this.button7.Text = "随机走";
+            this.button7.Text = "退出充电";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 

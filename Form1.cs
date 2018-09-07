@@ -788,20 +788,32 @@ namespace AGV_V1._0
             SetMapView();
             this.Invalidate();
         }
-        int angle = 0;
         /// <summary>
-        /// 随机走
+        /// 充电测试
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            byte vnum = 6;
+            ChargePacket cp = new ChargePacket(vnum, (byte)vnum, new CellPoint(4000,0));
+            Console.WriteLine("send charge");
+            AgvServerManager.Instance.SendTo(cp, vnum);
+        }
+        /// <summary>
+        /// 退出充电测试
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button7_Click_1(object sender, EventArgs e)
         {
-            byte vnum = 6;
-            //     ChargePacket cp = new ChargePacket(vnum, (byte)vnum, new CellPoint(4000,0));
+            byte vnum = 2;
             FinishChargePacket cp = new FinishChargePacket(vnum, (byte)vnum, new CellPoint(4000, 1000));
-            Console.WriteLine("send charge");
+            Console.WriteLine("send FihishCharge");
             AgvServerManager.Instance.SendTo(cp, vnum);
         }
+
+
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -813,13 +825,6 @@ namespace AGV_V1._0
             RemotingServices.Disconnect(remotableObject);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            int vnum = 5;
-            angle = (angle + 90) % 360;
-            SwervePacket sp = new SwervePacket((byte)(1 * vnum), (ushort)vnum, new AgvDriftAngle((ushort)angle));
-            Console.WriteLine(angle);
-            AgvServerManager.Instance.SendTo(sp, vnum);
-        }
+       
     }
 }

@@ -8,6 +8,7 @@ using System.Timers;
 using Agv.PathPlanning;
 using AGV_V1._0.Agv;
 using AGV_V1._0.Algorithm;
+using AGV_V1._0.Network.AgvNetwork.Packet;
 using AGV_V1._0.Util;
 using AGVSocket.Network;
 using AGVSocket.Network.EnumType;
@@ -646,7 +647,8 @@ namespace AGV_V1._0
             }
             else//需要发送的位置和当前小车实际所在的位置不相邻,必须在小车运动时才能发，防止启动的时候连发
             {
-                if (OrderExecState.Run != agvInfo.OrderExec)
+                if (OrderExecState.Run != agvInfo.OrderExec &&
+                    !(LastSendPacket is ClearFalutPacket))
                 {
                     return false;
                 }
